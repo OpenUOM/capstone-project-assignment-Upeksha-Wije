@@ -16,3 +16,23 @@ if (process.env.NODE_ENV === "test") {
 }
 
 module.exports = db
+
+const dbConnection = require("./sqlite");
+
+dbConnection
+  .getDbConnection()
+  .then((db) => {
+    init(db);
+  })
+  .catch((err) => {
+    console.log(err);
+    throw err;
+  });
+
+let _db;
+
+function init(db) {
+    _db = db;
+}
+
+const knex_db = require("./db-config");

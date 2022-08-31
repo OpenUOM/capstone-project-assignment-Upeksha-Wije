@@ -1,3 +1,14 @@
+import express from "express";
+import bodyParser from "body-parser";
+import {
+    initializeDatabase,
+    readTeachers,
+    readTeacherInfo,
+    addTeacher,
+    deleteTeacher,
+} from "./database.js";
+
+
 const express = require ("express");
 
 const {
@@ -43,6 +54,12 @@ app.post("/getTeacherInfo", async function (req, res) {
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
+  
+  id ={
+    "id": "teacher_id"
+  }
+  
+
 });
 
 app.post("/addTeacher", async function (req, res) {
@@ -54,6 +71,13 @@ app.post("/addTeacher", async function (req, res) {
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
+
+  id = {
+    "id": "teacher_id",
+    "name": "teacher_name",
+    "age": "teacher_age"
+  }
+
 });
 
 app.post("/editTeacher", async function (req, res) {
@@ -65,6 +89,13 @@ app.post("/editTeacher", async function (req, res) {
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
+
+  id={
+    "name": "teacher_name",
+    "age": "teacher_age",
+    "id": "teacher_id"
+  }
+
 });
 
 app.post("/deleteTeacher", async function (req, res) {
@@ -76,6 +107,11 @@ app.post("/deleteTeacher", async function (req, res) {
 
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
+
+  id={
+    "id": "teacher_id"
+  }
+
 });
 
 // ============== Student Related endpoints ==============
